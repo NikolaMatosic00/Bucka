@@ -5,36 +5,39 @@ import { useEffect, useRef } from 'react';
 export default function Gallery() {
   const galleryRef = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const items = entry.target.querySelectorAll('.gallery-item');
-            items.forEach((item, index) => {
-              item.classList.add('animate-in');
-              item.style.animationDelay = `${index * 0.15}s`;
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: '50px',
-      }
-    );
-
-    if (galleryRef.current) {
-      observer.observe(galleryRef.current);
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const items = entry.target.querySelectorAll('.gallery-item');
+          items.forEach((item, index) => {
+            item.classList.add('animate-in');
+            item.style.animationDelay = `${index * 0.15}s`;
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: '50px',
     }
+  );
 
-    return () => {
-      if (galleryRef.current) {
-        observer.unobserve(galleryRef.current);
-      }
-    };
-  }, []);
+  // Ovde čuvamo trenutnu vrednost ref-a u lokalnu promenljivu
+  const currentGalleryRef = galleryRef.current;
+
+  if (currentGalleryRef) {
+    observer.observe(currentGalleryRef);
+  }
+
+  return () => {
+    if (currentGalleryRef) {
+      observer.unobserve(currentGalleryRef);
+    }
+  };
+}, []);
 
   return (
 

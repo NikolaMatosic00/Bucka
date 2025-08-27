@@ -361,7 +361,7 @@ export default function Team() {
                 lineHeight: '1'
               }}
             >
-              "
+              &quot;
             </span>
             <p className="team-description text-xs sm:text-base text-salon-black font-normal leading-relaxed px-4 sm:px-8">
               Naš stručni tim frizera spaja kreativnost sa iskustvom kako bismo ostvarili vašu viziju. Sa pažnjom i posvećenošću, radimo na tome da se osećate lepo i samouvereno nakon svakog tretmana.
