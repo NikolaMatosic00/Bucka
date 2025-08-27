@@ -375,7 +375,7 @@ export default function Team() {
                 lineHeight: '1'
               }}
             >
-              "
+               &quot;
             </span>
           </div>
 
